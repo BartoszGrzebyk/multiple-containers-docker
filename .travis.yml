@@ -17,6 +17,18 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     - docker push bartosz/complex-client
-    - bartosz/complex-nginx
-    - bartosz/complex-nginx
-    - bartosz/complex-worker
+    - docker push bartosz/complex-server
+    - docker push bartosz/complex-nginx
+    - docker push bartosz/complex-worker
+# deploy:
+#     provider: elasticbeanstalk
+#     region:
+#     app:
+#     env:
+#     bucker_name:
+#     bucket_path:
+#     on:
+#         branch: master
+#     access_key_id: $AWS_ACCESS_KEY
+#     secret_access_key:
+#         secure: '$AWS_SECRET_KEY'
