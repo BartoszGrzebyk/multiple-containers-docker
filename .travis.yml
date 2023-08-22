@@ -3,23 +3,23 @@ services:
     - docker
 
 before_install:
-    - docker build -t bartosz/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t vertigo090/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true bartosz/react-test npm test
+    - docker run -e CI=true vertigo090/react-test npm test
 
 after_success:
-    - docker build -t bartosz/complex-client ./client
-    - docker build -t bartosz/complex-nginx ./nginx
-    - docker build -t bartosz/complex-server ./server
-    - docker build -t bartosz/complex-worker ./worker
+    - docker build -t vertigo090/complex-client ./client
+    - docker build -t vertigo090/complex-nginx ./nginx
+    - docker build -t vertigo090/complex-server ./server
+    - docker build -t vertigo090/complex-worker ./worker
 
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-    - docker push bartosz/complex-client
-    - docker push bartosz/complex-server
-    - docker push bartosz/complex-nginx
-    - docker push bartosz/complex-worker
+    - docker push vertigo090/complex-client
+    - docker push vertigo090/complex-server
+    - docker push vertigo090/complex-nginx
+    - docker push vertigo090/complex-worker
 # deploy:
 #     provider: elasticbeanstalk
 #     region:
